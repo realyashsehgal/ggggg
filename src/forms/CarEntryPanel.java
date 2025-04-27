@@ -52,15 +52,7 @@ public class CarEntryPanel extends JPanel {
         });
         LibraryApp.addComponent(buttonsPanel, addButton, gbc, 0, 0);
 
-        JButton removeButton = new JButton("Remove Student");
-        removeButton.setFont(homeFont);
-        removeButton.addActionListener(e -> {
-            removeFrame();
-            System.out.println("Remove");
-        });
-        LibraryApp.addComponent(buttonsPanel, removeButton, gbc, 0, 1);
-
-        JButton showButton = new JButton("Show Students");
+        JButton showButton = new JButton("Show Car entry data");
         showButton.setFont(homeFont);
         showButton.addActionListener(e -> {
             showFrame();
@@ -68,7 +60,7 @@ public class CarEntryPanel extends JPanel {
         });
         LibraryApp.addComponent(buttonsPanel, showButton, gbc, 0, 2);
 
-        JButton[] mainButtons = { addButton, removeButton, showButton };
+        JButton[] mainButtons = { addButton, showButton };
         for (JButton button : mainButtons) {
             button.setBackground(WHITE);
             button.setForeground(PURPLE);
@@ -121,7 +113,7 @@ public class CarEntryPanel extends JPanel {
         }
 
         LibraryApp.addComponent(addPanel, spinner, gbc, 1, 2);
-        JButton addButton = new JButton("Add Student");
+        JButton addButton = new JButton("Add Car entry");
         addButton.addActionListener(e -> {
             String erp = carnumberfield.getText().toUpperCase();
             String name = drivernamefield.getText();
@@ -156,61 +148,11 @@ public class CarEntryPanel extends JPanel {
         return mainFrame;
     }
 
-    private JFrame removeFrame() {
-        JFrame mainFrame = new BaseFrame(800, 600, "Remove Student", null);
-
-        JPanel headPanel = new BaseHeadImagePanel("Remove Student", homeFont, 10, 20);
-
-        JPanel removePanel = new BaseImagePanel("src/images/addStudent.jpg");
-        removePanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        JLabel studentErp = LibraryApp.createLabel("Student ERP", font);
-        studentErp.setForeground(WHITE);
-        LibraryApp.addComponent(removePanel, studentErp, gbc, 0, 0);
-
-        JTextField erpField = LibraryApp.createTextField(font);
-        LibraryApp.addComponent(removePanel, erpField, gbc, 1, 0);
-
-        JButton removeButton = new JButton("Remove Student");
-
-        removeButton.addActionListener(e -> {
-            String erp = erpField.getText().toUpperCase();
-            int result = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to remove student with ERP: " + erp + "?", "Remove Confirm",
-                    JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-                String removeStudent = CarEntryManager.removeStudent(erp);
-                if (removeStudent.equals("SUCCESS")) {
-                    JOptionPane.showMessageDialog(null, "Student Successfully Removed!", removeStudent,
-                            JOptionPane.INFORMATION_MESSAGE);
-
-                    mainFrame.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, removeStudent, "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-        removeButton.setBackground(WHITE);
-        LibraryApp.addComponent(removePanel, removeButton, gbc, 0, 3);
-
-        mainFrame.add(headPanel, BorderLayout.NORTH);
-        mainFrame.add(removePanel, BorderLayout.CENTER);
-
-        mainFrame.setVisible(true);
-
-        return mainFrame;
-    }
-
     private JFrame showFrame() {
 
-        JFrame mainFrame = new BaseFrame(800, 600, "Student Data", null);
-        JPanel headPanel = new BaseHeadPanel("Student Details", BROWN, WHITE, homeFont, 20, 30);
-        String[] columnNames = { "ERP ID", "Name", "Course" };
+        JFrame mainFrame = new BaseFrame(800, 600, "Car's entry Data", null);
+        JPanel headPanel = new BaseHeadPanel("Cars Details", BROWN, WHITE, homeFont, 20, 30);
+        String[] columnNames = { "Car number", "Driver's name", "Entry time" };
 
         List<String[]> students = CarEntryManager.getAllStudents();
         String[][] data = students.toArray(new String[0][]);

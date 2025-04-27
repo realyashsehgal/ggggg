@@ -8,7 +8,7 @@ import src.models.CarExit;
 public class CarExitManager {
 
     private static final String addQuery = "INSERT INTO carexit ( CarNumber, DriverName, ExitTimestamp, AmountPaid) VALUES (?, ?, ?, ?)";
-    private static final String showQuery = "SELECT * FROM Book ORDER BY Book_ID ASC";
+    private static final String showQuery = "SELECT * FROM carexit ORDER BY ExitID ASC";
     private static final String removeQuery = "DELETE FROM Book WHERE Book_ID = ?";
     private static final String getQuery = "SELECT * FROM Book WHERE Book_ID = ?";
     private static final String setAvailability = "UPDATE Book SET Availability = ? WHERE Book_Id = ?";
@@ -80,33 +80,32 @@ public class CarExitManager {
         }
     }
 
-    public static CarExit getBook(String bookId) {
-        // try {
-        // conn = DatabaseManager.GetConnection();
-        // st = conn.prepareStatement(getQuery);
-        // st.setString(1, bookId);
-        // rs = st.executeQuery();
+    // public static CarExit getBook(String bookId) {
+    // try {
+    // conn = DatabaseManager.GetConnection();
+    // st = conn.prepareStatement(getQuery);
+    // st.setString(1, bookId);
+    // rs = st.executeQuery();
 
-        // if (rs.next()) {
-        // CarExit book = new CarExit(rs.getString("Book_ID"),
-        // rs.getString("Title"),
-        // rs.getString("Author"));
-        // book.setAvailability(rs.getString("Availability"));
-        // System.out.println(book.toString());
-        // return book;
-        // } else {
-        // System.out.println("NO BOOK");
-        // return null;
-        // }
+    // if (rs.next()) {
+    // CarExit book = new CarExit(rs.getString("Book_ID"),
+    // rs.getString("Title"),
+    // rs.getString("Author"));
+    // book.setAvailability(rs.getString("Availability"));
+    // System.out.println(book.toString());
+    // return book;
+    // } else {
+    // System.out.println("NO BOOK");
+    // return null;
+    // }
 
-        // } catch (SQLException e) {
-        // System.out.println(e.getMessage());
-        // return null;
-        // } finally {
-        // DatabaseManager.close(conn, st, rs);
-        // }
-        return null;
-    }
+    // } catch (SQLException e) {
+    // System.out.println(e.getMessage());
+    // return null;
+    // } finally {
+    // DatabaseManager.close(conn, st, rs);
+    // }
+    // }
 
     public static List<String[]> getAllBooks() {
         try {
@@ -117,10 +116,11 @@ public class CarExitManager {
             List<String[]> books = new ArrayList<>();
 
             while (rs.next()) {
-                books.add(new String[] { rs.getString("Book_ID"),
-                        rs.getString("Title"),
-                        rs.getString("Author"),
-                        rs.getString("Availability") });
+                books.add(new String[] { rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                });
             }
 
             return books;

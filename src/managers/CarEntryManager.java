@@ -8,7 +8,7 @@ import src.models.CarEntry;
 public class CarEntryManager {
 
     private static final String addQuery = "INSERT INTO carentry (CarNumber, DriverName, EntryTimestamp) VALUES (?, ?, ?)";
-    private static final String showQuery = "SELECT * FROM Student ORDER BY ERP_ID ASC";
+    private static final String showQuery = "SELECT * FROM carentry ORDER BY EntryID ASC";
     private static final String getQuery = "SELECT * FROM Student WHERE ERP_ID = ?";
     private static final String removeQuery = "DELETE FROM STUDENT WHERE ERP_ID = ?";
 
@@ -95,9 +95,9 @@ public class CarEntryManager {
             List<String[]> students = new ArrayList<>();
 
             while (rs.next()) {
-                students.add(new String[] { rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3) });
+                students.add(new String[] { rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4) });
             }
 
             return students;

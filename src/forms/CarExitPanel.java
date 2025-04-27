@@ -44,7 +44,7 @@ public class CarExitPanel extends JPanel {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JButton addButton = new JButton("Add Book");
+        JButton addButton = new JButton("Add Car's exit entry");
         addButton.setFont(homeFont);
         addButton.addActionListener(e -> {
             addFrame();
@@ -52,15 +52,7 @@ public class CarExitPanel extends JPanel {
         });
         LibraryApp.addComponent(buttonsPanel, addButton, gbc, 0, 0);
 
-        JButton removeButton = new JButton("Remove Book");
-        removeButton.setFont(homeFont);
-        removeButton.addActionListener(e -> {
-            removeFrame();
-            System.out.println("Remove");
-        });
-        LibraryApp.addComponent(buttonsPanel, removeButton, gbc, 0, 1);
-
-        JButton showButton = new JButton("Show Books");
+        JButton showButton = new JButton("Show Car's exit ");
         showButton.setFont(homeFont);
         showButton.addActionListener(e -> {
             showFrame();
@@ -68,7 +60,7 @@ public class CarExitPanel extends JPanel {
         });
         LibraryApp.addComponent(buttonsPanel, showButton, gbc, 0, 2);
 
-        JButton[] mainButtons = { addButton, removeButton, showButton };
+        JButton[] mainButtons = { addButton, showButton };
         for (JButton button : mainButtons) {
             button.setBackground(WHITE);
             button.setForeground(PURPLE);
@@ -83,7 +75,7 @@ public class CarExitPanel extends JPanel {
     }
 
     private JFrame addFrame() {
-        JFrame mainFrame = new BaseFrame(800, 600, "Add Book", null);
+        JFrame mainFrame = new BaseFrame(800, 600, "Add exit entry", null);
         JPanel headPanel = new BaseHeadImagePanel("car exit", homeFont, 10, 20);
 
         JPanel addPanel = new BaseImagePanel("src/images/addBook.jpg");
@@ -159,63 +151,13 @@ public class CarExitPanel extends JPanel {
         return mainFrame;
     }
 
-    private JFrame removeFrame() {
-        JFrame mainFrame = new BaseFrame(800, 600, "Remove Book", null);
-
-        JPanel headPanel = new BaseHeadImagePanel("Remove Book", homeFont, 10, 20);
-
-        JPanel removePanel = new BaseImagePanel("src/images/removeBook.png");
-        removePanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
-
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-
-        JLabel carextid = LibraryApp.createLabel("Book ID: ", font);
-        carextid.setForeground(WHITE);
-        LibraryApp.addComponent(removePanel, carextid, gbc, 0, 0);
-
-        JTextField idField = LibraryApp.createTextField(font);
-        LibraryApp.addComponent(removePanel, idField, gbc, 1, 0);
-
-        JButton removeButton = new JButton("Remove Book");
-
-        removeButton.addActionListener(e -> {
-            String id = idField.getText().toUpperCase();
-            int result = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to remove Book with ID: " + id + "?", "Remove Confirm",
-                    JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-                String removeBook = CarExitManager.removeBook(id);
-                if (removeBook.equals("SUCCESS")) {
-                    JOptionPane.showMessageDialog(null, "Book Successfully Removed!", removeBook,
-                            JOptionPane.INFORMATION_MESSAGE);
-
-                    mainFrame.dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, removeBook, "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
-        removeButton.setBackground(WHITE);
-        LibraryApp.addComponent(removePanel, removeButton, gbc, 0, 3);
-
-        mainFrame.add(headPanel, BorderLayout.NORTH);
-        mainFrame.add(removePanel, BorderLayout.CENTER);
-
-        mainFrame.setVisible(true);
-
-        return mainFrame;
-    }
-
     private JFrame showFrame() {
 
         JFrame mainFrame = new BaseFrame(800, 600, "Book Data", null);
 
         JPanel headPanel = new BaseHeadPanel("Book Details", BROWN, WHITE, homeFont, 20, 30);
 
-        String[] columnNames = { "Book ID", "Title", "Author", "Availability" };
+        String[] columnNames = { "Car number", "Driver's name", "Exit time ", "amount paid" };
 
         List<String[]> books = CarExitManager.getAllBooks();
         String[][] data = books.toArray(new String[0][]);
