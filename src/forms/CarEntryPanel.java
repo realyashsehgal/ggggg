@@ -29,12 +29,12 @@ public class CarEntryPanel extends JPanel {
         this.setLayout(new BorderLayout());
 
         String[] buttons = { "Home", "Exit", "Transaction" };
-        JPanel ribbonPanel = LibraryApp.createRibbonPanel(buttons, font);
+        JPanel ribbonPanel = ParkingLotApp.createRibbonPanel(buttons, font);
 
         JPanel headPanel = new BaseHeadImagePanel("CarEntry Data", headingFont, 20, 30);
         headPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
-        JPanel studentPanel = new JPanel(new BorderLayout());
+        JPanel carPanel = new JPanel(new BorderLayout());
 
         BaseImagePanel buttonsPanel = new BaseImagePanel("src/images/studentPanel.jpg");
         buttonsPanel.setLayout(new GridBagLayout());
@@ -50,7 +50,7 @@ public class CarEntryPanel extends JPanel {
             addFrame();
             System.out.println("ADD");
         });
-        LibraryApp.addComponent(buttonsPanel, addButton, gbc, 0, 0);
+        ParkingLotApp.addComponent(buttonsPanel, addButton, gbc, 0, 0);
 
         JButton showButton = new JButton("Show Car entry data");
         showButton.setFont(homeFont);
@@ -58,7 +58,7 @@ public class CarEntryPanel extends JPanel {
             showFrame();
             System.out.println("SHOW");
         });
-        LibraryApp.addComponent(buttonsPanel, showButton, gbc, 0, 2);
+        ParkingLotApp.addComponent(buttonsPanel, showButton, gbc, 0, 2);
 
         JButton[] mainButtons = { addButton, showButton };
         for (JButton button : mainButtons) {
@@ -66,17 +66,17 @@ public class CarEntryPanel extends JPanel {
             button.setForeground(PURPLE);
         }
 
-        studentPanel.add(headPanel, BorderLayout.NORTH);
-        studentPanel.add(buttonsPanel, BorderLayout.CENTER);
+        carPanel.add(headPanel, BorderLayout.NORTH);
+        carPanel.add(buttonsPanel, BorderLayout.CENTER);
 
         this.add(ribbonPanel, BorderLayout.NORTH);
-        this.add(studentPanel, BorderLayout.CENTER);
+        this.add(carPanel, BorderLayout.CENTER);
 
     }
 
     private JFrame addFrame() {
-        JFrame mainFrame = new BaseFrame(800, 600, "Add Student", null);
-        JPanel headPanel = new BaseHeadImagePanel("Add Student", homeFont, 10, 20);
+        JFrame mainFrame = new BaseFrame(800, 600, "Add Car entry", null);
+        JPanel headPanel = new BaseHeadImagePanel("Add Car entry", homeFont, 10, 20);
 
         JPanel addPanel = new BaseImagePanel("src/images/addStudent.jpg");
         addPanel.setLayout(new GridBagLayout());
@@ -86,21 +86,21 @@ public class CarEntryPanel extends JPanel {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        JLabel carnumber = LibraryApp.createLabel("Car number", font);
-        JLabel drivername = LibraryApp.createLabel("Driver's namme", font);
-        JLabel carentrytimestamp = LibraryApp.createLabel("Student Course", font);
+        JLabel carnumber = ParkingLotApp.createLabel("Car number", font);
+        JLabel drivername = ParkingLotApp.createLabel("Driver's namme", font);
+        JLabel carentrytimestamp = ParkingLotApp.createLabel("Car entry time", font);
 
         JLabel[] labels = { carnumber, drivername, carentrytimestamp };
 
         for (int i = 0; i < labels.length; i++) {
 
             labels[i].setForeground(WHITE);
-            LibraryApp.addComponent(addPanel, labels[i], gbc, 0, i);
+            ParkingLotApp.addComponent(addPanel, labels[i], gbc, 0, i);
 
         }
 
-        JTextField carnumberfield = LibraryApp.createTextField(font);
-        JTextField drivernamefield = LibraryApp.createTextField(font);
+        JTextField carnumberfield = ParkingLotApp.createTextField(font);
+        JTextField drivernamefield = ParkingLotApp.createTextField(font);
         JSpinner spinner = new JSpinner(new SpinnerDateModel());
         JSpinner.DateEditor exittimetf = new JSpinner.DateEditor(spinner, "dd-MM-yyyy HH:mm");
         spinner.setEditor(exittimetf);
@@ -109,36 +109,35 @@ public class CarEntryPanel extends JPanel {
 
         for (int i = 0; i < tfs.length; i++) {
 
-            LibraryApp.addComponent(addPanel, tfs[i], gbc, 1, i);
+            ParkingLotApp.addComponent(addPanel, tfs[i], gbc, 1, i);
         }
 
-        LibraryApp.addComponent(addPanel, spinner, gbc, 1, 2);
+        ParkingLotApp.addComponent(addPanel, spinner, gbc, 1, 2);
         JButton addButton = new JButton("Add Car entry");
         addButton.addActionListener(e -> {
-            String erp = carnumberfield.getText().toUpperCase();
-            String name = drivernamefield.getText();
-            Date date = (Date) spinner.getValue();
-            Instant instant = date.toInstant();
+            String carnum = carnumberfield.getText().toUpperCase();
+            String driversname = drivernamefield.getText();
+            Date timeentered = (Date) spinner.getValue();
+            Instant instant = timeentered.toInstant();
             LocalDateTime entrytimee = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
             int result = JOptionPane.showConfirmDialog(null,
-                    "Are you sure you want to add student with ERP: " + erp + "?", "Add Confirm",
+                    "Are you sure you want to add this car with car number: " + carnum + "?", "Add Confirm",
                     JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
-                System.out.println("I treiedddddddd");
-                CarEntry student = new CarEntry(erp, name, entrytimee);
-                String addStudent = CarEntryManager.addStudent(student);
-                if (addStudent.equals("SUCCESS")) {
-                    JOptionPane.showMessageDialog(null, "Student Successfully Added!", addStudent,
+                CarEntry car = new CarEntry(carnum, driversname, entrytimee);
+                String addcar = CarEntryManager.addcar(car);
+                if (addcar.equals("SUCCESS")) {
+                    JOptionPane.showMessageDialog(null, "Car entry Successfully Added!", addcar,
                             JOptionPane.INFORMATION_MESSAGE);
 
                     mainFrame.dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, addStudent, "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, addcar, "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
         addButton.setBackground(WHITE);
-        LibraryApp.addComponent(addPanel, addButton, gbc, 0, 3);
+        ParkingLotApp.addComponent(addPanel, addButton, gbc, 0, 3);
 
         mainFrame.add(headPanel, BorderLayout.NORTH);
         mainFrame.add(addPanel, BorderLayout.CENTER);
@@ -154,8 +153,8 @@ public class CarEntryPanel extends JPanel {
         JPanel headPanel = new BaseHeadPanel("Cars Details", BROWN, WHITE, homeFont, 20, 30);
         String[] columnNames = { "Car number", "Driver's name", "Entry time" };
 
-        List<String[]> students = CarEntryManager.getAllStudents();
-        String[][] data = students.toArray(new String[0][]);
+        List<String[]> cars = CarEntryManager.getAllcars();
+        String[][] data = cars.toArray(new String[0][]);
 
         JScrollPane dataTable = new BaseTable(data, columnNames);
 
