@@ -20,7 +20,7 @@ public class ParkingLotApp {
     ImageIcon logo = new ImageIcon("src/images/LMS.jpg");
 
     public ParkingLotApp() {
-        JFrame frame = new BaseFrame(1600, 900, "Parking Lot Management System", null);
+        JFrame frame = new BaseFrame(1000, 600, "Parking Lot Management System", null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         cardLayout = new CardLayout();
@@ -88,9 +88,7 @@ public class ParkingLotApp {
         JPanel mainRibbonPanel = new BaseImagePanel("src/images/ribbonPanel.png");
         mainRibbonPanel.setLayout(new BorderLayout());
 
-        JPanel leftRibbonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 230, 30));
-        JPanel rightRibbonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 230, 30));
-        leftRibbonPanel.setOpaque(false);
+        JPanel rightRibbonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 50, 30));
         rightRibbonPanel.setOpaque(false);
 
         for (String buttonName : buttons) {
@@ -102,14 +100,12 @@ public class ParkingLotApp {
             button.addActionListener(e -> {
                 cardLayout.show(mainPanel, buttonName);
             });
-            if (buttonName.equals("Home")) {
-                leftRibbonPanel.add(button);
-            } else
-                rightRibbonPanel.add(button);
+            ;
+
+            rightRibbonPanel.add(button);
         }
         mainRibbonPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 
-        mainRibbonPanel.add(leftRibbonPanel, BorderLayout.WEST);
         mainRibbonPanel.add(rightRibbonPanel, BorderLayout.EAST);
 
         return mainRibbonPanel;

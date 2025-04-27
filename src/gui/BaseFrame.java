@@ -1,20 +1,19 @@
 package src.gui;
 
+import java.awt.BorderLayout;
 import javax.swing.*;
 
-import java.awt.BorderLayout;
+public class BaseFrame extends JFrame {
 
-public class BaseFrame extends JFrame{
-
-    public BaseFrame(int width, int height, String title, ImageIcon logo)
-    {   
+    public BaseFrame(int width, int height, String title, ImageIcon logo) {
         this.setTitle(title);
-        this.setSize(width,height);
+        this.setSize(width, height);
         this.setResizable(false);
-        this.setLayout(new BorderLayout()); 
-        if(logo != null)
+        this.setLayout(new BorderLayout());
+        this.setLocationRelativeTo(null);
+        if (logo != null)
             this.setIconImage(logo.getImage());
-        
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     }
