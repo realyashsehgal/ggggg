@@ -36,7 +36,7 @@ public class CarEntryPanel extends JPanel {
 
         JPanel carPanel = new JPanel(new BorderLayout());
 
-        BaseImagePanel buttonsPanel = new BaseImagePanel("src/images/studentPanel.png");
+        BaseImagePanel buttonsPanel = new BaseImagePanel("src/images/carEntryPanel.png");
         buttonsPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
