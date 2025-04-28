@@ -13,12 +13,12 @@ import src.managers.TransactionManager;
 public class TransactionPanel extends JPanel {
 
     private Font font = new Font("Montserrat", Font.BOLD, 20);
-    private Font headingFont = new Font("Montserrat", Font.BOLD, 80);
+    private Font headingFont = new Font("Montserrat", Font.BOLD, 50);
     private Font homeFont = new Font("Montserrat", Font.BOLD, 40);
 
     private static final Color BROWN = new Color(132, 72, 47);
     private static final Color WHITE = new Color(255, 255, 255);
-    private static final Color PURPLE = new Color(160, 10, 255);
+    private static final Color BLACK = new Color(0, 0, 0);
 
     public TransactionPanel() {
         this.setLayout(new BorderLayout());
@@ -26,7 +26,7 @@ public class TransactionPanel extends JPanel {
         String[] buttons = { "Home", "Entry", "Exit" };
         JPanel ribbonPanel = ParkingLotApp.createRibbonPanel(buttons, font);
 
-        JPanel headPanel = new BaseHeadImagePanel("Transaction Data", headingFont, 20, 30);
+        JPanel headPanel = new BaseHeadImagePanel("Transaction Data", headingFont, 10, 10);
         headPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
         JPanel transactionPanel = new JPanel(new BorderLayout());
@@ -50,7 +50,7 @@ public class TransactionPanel extends JPanel {
         JButton[] mainButtons = { showTransactions };
         for (JButton button : mainButtons) {
             button.setBackground(WHITE);
-            button.setForeground(PURPLE);
+            button.setForeground(BLACK);
         }
 
         transactionPanel.add(headPanel, BorderLayout.NORTH);
@@ -64,7 +64,7 @@ public class TransactionPanel extends JPanel {
     private JFrame allTransactions() {
         JFrame mainFrame = new BaseFrame(800, 600, "Transaction Data", null);
 
-        JPanel headPanel = new BaseHeadPanel("Transaction Details", BROWN, WHITE, homeFont, 20, 30);
+        JPanel headPanel = new BaseHeadPanel("Transaction Details", BROWN, WHITE, homeFont, 20, 10);
 
         String[] columnNames = { "Car number", "Driver name", "Entry time", "Exit time",
                 "Amount paid" };

@@ -3,9 +3,9 @@ package src;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import src.forms.ParkingLotApp;
 import src.managers.DatabaseInitializer;
 import src.managers.DatabaseManager;
+import src.ui.LoginFrame;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,8 +20,8 @@ public class Main {
             if (DatabaseInitializer.initialize() == 0) {
                 return;
             }
-            // new LoginFrame();
-            new ParkingLotApp();
+            new LoginFrame();
+            // new ParkingLotApp();
         });
     }
 }

@@ -18,12 +18,12 @@ import src.models.CarExit;
 public class CarExitPanel extends JPanel {
 
     private Font font = new Font("Montserrat", Font.BOLD, 20);
-    private Font headingFont = new Font("Montserrat", Font.BOLD, 80);
+    private Font headingFont = new Font("Montserrat", Font.BOLD, 50);
     private Font homeFont = new Font("Montserrat", Font.BOLD, 40);
 
     private static final Color WHITE = new Color(255, 255, 255);
     private static final Color BROWN = new Color(132, 72, 47);
-    private static final Color PURPLE = new Color(160, 10, 255);
+    private static final Color BLACK = new Color(0, 0, 0);
 
     public CarExitPanel() {
         this.setLayout(new BorderLayout());
@@ -31,12 +31,12 @@ public class CarExitPanel extends JPanel {
         String[] buttons = { "Home", "Entry", "Transaction" };
         JPanel ribbonPanel = ParkingLotApp.createRibbonPanel(buttons, font);
 
-        JPanel headPanel = new BaseHeadImagePanel("car exit", headingFont, 20, 30);
+        JPanel headPanel = new BaseHeadImagePanel("car exit", headingFont, 20, 10);
         headPanel.setBorder(BorderFactory.createLineBorder(Color.black, 2));
 
         JPanel carPanel = new JPanel(new BorderLayout());
 
-        BaseImagePanel buttonsPanel = new BaseImagePanel("src/images/bookPanel.jpg");
+        BaseImagePanel buttonsPanel = new BaseImagePanel("src/images/carExitPanel.png");
         buttonsPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -63,7 +63,7 @@ public class CarExitPanel extends JPanel {
         JButton[] mainButtons = { addButton, showButton };
         for (JButton button : mainButtons) {
             button.setBackground(WHITE);
-            button.setForeground(PURPLE);
+            button.setForeground(BLACK);
         }
 
         carPanel.add(headPanel, BorderLayout.NORTH);
@@ -76,9 +76,9 @@ public class CarExitPanel extends JPanel {
 
     private JFrame addFrame() {
         JFrame mainFrame = new BaseFrame(800, 600, "Add exit entry", null);
-        JPanel headPanel = new BaseHeadImagePanel("car exit", homeFont, 10, 20);
+        JPanel headPanel = new BaseHeadImagePanel("car exit", homeFont, 10, 10);
 
-        JPanel addPanel = new BaseImagePanel("src/images/addBook.jpg");
+        JPanel addPanel = new BaseImagePanel("src/images/addCarExit.png");
         addPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
@@ -155,7 +155,7 @@ public class CarExitPanel extends JPanel {
 
         JFrame mainFrame = new BaseFrame(800, 600, "Car Data", null);
 
-        JPanel headPanel = new BaseHeadPanel("Car Details", BROWN, WHITE, homeFont, 20, 30);
+        JPanel headPanel = new BaseHeadPanel("Car Details", BROWN, WHITE, homeFont, 20, 10);
 
         String[] columnNames = { "Car number", "Driver's name", "Exit time ", "amount paid" };
 

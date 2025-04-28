@@ -29,7 +29,7 @@ public class LoginFrame {
         frame = new BaseFrame(800, 600, "Login Window", logo);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel headPanel = new BaseHeadImagePanel("Login/Sign Up", headFont, 20, 30);
+        JPanel headPanel = new BaseHeadImagePanel("Login/Sign Up", headFont, 20, 10);
         JPanel loginPanel = new BaseImagePanel("src/images/loginFrame.jpg");
         loginPanel.setLayout(new GridBagLayout());
 
@@ -60,7 +60,7 @@ public class LoginFrame {
 
     private JFrame loginFrame(JFrame frame) {
         JFrame mainFrame = new BaseFrame(800, 600, "Log in", null);
-        JPanel headPanel = new BaseHeadImagePanel("Log In", headFont, 20, 30);
+        JPanel headPanel = new BaseHeadImagePanel("Log In", headFont, 20, 10);
 
         JPanel mainPanel = new BaseImagePanel("src/images/loginPanel.jpg");
         mainPanel.setLayout(new GridBagLayout());
@@ -125,7 +125,7 @@ public class LoginFrame {
 
     private JFrame signupFrame() {
         JFrame mainFrame = new BaseFrame(800, 600, "Sign Up", null);
-        JPanel headPanel = new BaseHeadImagePanel("Sign Up", headFont, 20, 30);
+        JPanel headPanel = new BaseHeadImagePanel("Sign Up", headFont, 20, 10);
 
         JPanel mainPanel = new BaseImagePanel("src/images/loginPanel.jpg");
         mainPanel.setLayout(new GridBagLayout());
