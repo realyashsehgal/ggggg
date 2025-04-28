@@ -124,7 +124,7 @@ public class CarExitPanel extends JPanel {
             LocalDateTime exittimeout = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
             float amountkipaid = Float.parseFloat(amountpaidtf.getText());
             int result = JOptionPane.showConfirmDialog(null,
-                    "Are you sure the car is leaving with carnumber : " + carnumber + "?", "Add Confirm",
+                    "Are you sure the car is leaving with carnumber : " + carkenumber + "?", "Add Confirm",
                     JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
 

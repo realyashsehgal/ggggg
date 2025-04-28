@@ -87,7 +87,7 @@ public class CarEntryPanel extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         JLabel carnumber = ParkingLotApp.createLabel("Car number", font);
-        JLabel drivername = ParkingLotApp.createLabel("Driver's namme", font);
+        JLabel drivername = ParkingLotApp.createLabel("Driver's name", font);
         JLabel carentrytimestamp = ParkingLotApp.createLabel("Car entry time", font);
 
         JLabel[] labels = { carnumber, drivername, carentrytimestamp };
